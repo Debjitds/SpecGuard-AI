@@ -1,0 +1,19 @@
+{
+  "projectId": "11d76fea-c7d0-46e6-adc1-ddd387891ea1",
+  "type": "frontend",
+  "name": "Dashboard - Review Action Accept",
+  "planSteps": [
+    {
+      "type": "action",
+      "description": "Navigate to /auth, sign up to access the dashboard, click 'Load Demo Project', select 'Meeting Room Booking', and click 'Run Analysis'"
+    },
+    {
+      "type": "action",
+      "description": "In the review queue, find the first finding and click the 'Accept' button"
+    },
+    {
+      "type": "assertion",
+      "description": "The Engineering Review summary panel at the top shows '1' under the 'Accepted' status chip"
+    }
+  ]
+}

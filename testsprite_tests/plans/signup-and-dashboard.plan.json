@@ -1,0 +1,23 @@
+{
+  "projectId": "11d76fea-c7d0-46e6-adc1-ddd387891ea1",
+  "type": "frontend",
+  "name": "Signup and Dashboard - E2E flow",
+  "planSteps": [
+    {
+      "type": "action",
+      "description": "Navigate to /auth, click the 'Sign Up' tab, fill in the name, a random email, and password (in both password fields), then click 'Create Account'"
+    },
+    {
+      "type": "assertion",
+      "description": "The user is redirected to the dashboard, and a greeting containing 'Hello' is visible"
+    },
+    {
+      "type": "action",
+      "description": "Click the 'Load Demo Project' button"
+    },
+    {
+      "type": "assertion",
+      "description": "A modal dialog appears with demo project options like 'Meeting Room Booking' or 'E-commerce Checkout'"
+    }
+  ]
+}

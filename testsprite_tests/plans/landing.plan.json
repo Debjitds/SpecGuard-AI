@@ -1,0 +1,15 @@
+{
+  "projectId": "11d76fea-c7d0-46e6-adc1-ddd387891ea1",
+  "type": "frontend",
+  "name": "Landing Page - Main elements are visible",
+  "planSteps": [
+    {
+      "type": "action",
+      "description": "Navigate to the landing page"
+    },
+    {
+      "type": "assertion",
+      "description": "The page displays 'SpecGuard AI' and the 'Catch ambiguities' subheading"
+    }
+  ]
+}
