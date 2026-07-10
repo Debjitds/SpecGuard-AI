@@ -1,121 +1,112 @@
 # SpecGuard AI
 
-> A Neo-Brutalist **PRD review workspace** that helps teams catch requirement
-> gaps, reduce ambiguity, and export structured engineering-review findings
-> _before_ a single line of code is written.
-
-Built for a hackathon. Upload a PRD (or load a demo), let **Gemini AI**
-analyze it, inspect findings, mark issues as **accepted / ignored / resolved**,
-and export an audit report (PDF / Markdown / JSON).
+> A Neo-Brutalist **PRD review workspace** that helps teams catch requirement gaps, reduce ambiguity, and export structured engineering-review findings _before_ a single line of code is written.
 
 ---
 
-## ✨ Features
+## 1. Project Overview
+- **Project Name:** SpecGuard AI
+- **What it is:** A specialized software requirements review workspace.
+- **The Problem it solves:** Teams often start building with incomplete or ambiguous product requirements, leading to missed edge cases, rework, and wasted engineering time. SpecGuard AI solves this by turning requirement review into a repeatable, guided workflow.
+- **Target Users:** Founders, Product Managers, Software Engineers, UI/UX Designers, Technical Writers, and QA Engineers.
+- **Key Features:** AI-assisted PRD analysis, interactive engineering review queue, structured issue categorization, and comprehensive report exports.
 
-- **Landing page** — hero, core capabilities, footer (no pricing, no fluff).
-- **Auth** — email + password only (login / sign up / logout). No OAuth, no
-  forgot-password.
-- **Dashboard = the analysis surface.** No separate analysis page. Everything
-  lives inside the dashboard:
-  - Project overview + project switcher (sidebar)
-  - **Upload PRD** CTA + **Load Demo Project** modal (5 demos)
-  - Version timeline (`v1.0` → `v1.1` → … → current draft)
-  - Summary cards: Completeness · Ambiguity · Testability · Consistency
-  - Issue breakdown (critical / major / minor)
-  - **What to Fix First** (prioritized critical & major findings)
-  - **Analysis Workspace** — scrollable PRD viewer + Review Queue sidebar
-  - **Engineering Review** panel (progress, category breakdown)
-  - **Export** section (PDF / Markdown / JSON)
-- **AI analysis** — Gemini identifies ambiguity, missing acceptance criteria,
-  inconsistent flows, missing permissions, weak edge cases, testability risks,
-  and unclear requirements.
-- **Engineering review** — accept / ignore / resolve each finding.
+## 2. Live Demo
+Live Demo:  
+[https://spec-guard-ai-one.vercel.app/](https://spec-guard-ai-one.vercel.app/)
 
-## 🎨 Design
+## 3. GitHub Repository
+GitHub Repository:  
+[https://github.com/Debjitds/SpecGuard-AI](https://github.com/Debjitds/SpecGuard-AI)
 
-Neo-Brutalism: warm cream background (`#F5F2ED`), thick black borders (3–4px),
-hard shadows (4–8px), bold accent colours (coral, teal, lavender, yellow,
-mint), Inter 500–900. Matches the Stitch design assets in `docs/`.
+## 4. Tech Stack
+- Vite
+- React
+- TypeScript
+- Tailwind CSS
+- Supabase
+- Gemini AI
+- Vercel
+- TestSprite CLI
 
-## 🧰 Tech stack
+## 5. Features
+- **PRD Upload:** Upload your product requirements directly into the workspace.
+- **Demo Project Loader:** Load pre-configured demo PRDs (e.g., Meeting Room Booking, SaaS CRM) to test the platform immediately.
+- **AI Requirement Analysis:** Powered by Gemini AI to identify ambiguity, missing acceptance criteria, inconsistent flows, and weak edge cases.
+- **Engineering Review Dashboard:** The central hub for your analysis surface containing all interactions and panels.
+- **Issue Breakdown:** Categorizes findings logically by severity and type.
+- **Version Timeline:** Tracks review history versions (e.g., `v1.0` → `v1.1`).
+- **Export Reports:** Export the finalized review audit in PDF, Markdown, or JSON formats.
+- **Neo Brutalism UI:** Warm cream background, thick black borders, hard shadows, and bold accent colors matching the core design assets.
 
-| Layer    | Choice                                   |
-| -------- | ---------------------------------------- |
-| Build    | Vite + React + TypeScript                |
-| Styling  | Tailwind CSS + shadcn-style primitives   |
-| Auth/DB  | Supabase (Auth + Postgres)               |
-| AI       | Google Gemini (`@google/generative-ai`)  |
-| Routing  | react-router-dom                         |
+## 6. TestSprite Verification
+TestSprite CLI was used for comprehensive frontend verification of this project. 
+- Multiple frontend test plans were created in the repository.
+- Core user flows including the landing page, authentication, dashboard interactions, demo loading, engineering review actions, and export functionality were verified.
+- The project actively follows the TestSprite verification workflow to ensure frontend reliability and quality.
 
-## 🚀 Quick start
+## 7. Verification Loop (LOOP.md)
+The repository includes a detailed record documenting the TestSprite verification process.
+[LOOP.md](./LOOP.md)
 
-```bash
-npm install
-npm run dev      # http://localhost:5173
-```
-
-That's it — **no environment variables required.** The app runs out of the box
-using a local (browser) backend and a built-in deterministic analyzer, so every
-flow works for a demo.
-
-### Optional: enable Supabase + Gemini
-
-1. Copy `.env.example` → `.env` and fill in values.
-2. Create the database by running `supabase/schema.sql` in the Supabase SQL
-   editor (Project → SQL Editor → paste → Run).
-3. Restart `npm run dev`.
-
-```env
-VITE_SUPABASE_URL=...
-VITE_SUPABASE_ANON_KEY=...
-VITE_GEMINI_API_KEY=...
-```
-
-When set, the app automatically switches from "Local DB / Built-in AI" to
-"Supabase / Gemini" (see the chips in the dashboard sidebar).
-
-## 🧪 Scripts
-
-```bash
-npm run dev       # start dev server
-npm run build     # type-check + production build
-npm run preview   # preview the production build
-npm run typecheck # tsc only
-```
-
-## 📂 Project structure
-
-```
+## 8. Project Structure
+```text
 src/
 ├── components/
-│   ├── dashboard/      # Sidebar, AnalysisWorkspace, ReviewItem, panels, dialogs
-│   └── ui/             # button, card, dialog, input, label, tabs, chip
-├── context/            # AuthContext, DashboardContext
-├── data/               # 5 demo PRDs
+│   ├── dashboard/      # Sidebar, AnalysisWorkspace, panels, dialogs
+│   └── ui/             # Reusable UI primitives (buttons, cards, inputs)
+├── context/            # AuthContext, DashboardContext for global state
+├── data/               # 5 demo PRDs for the Demo Project Loader
 ├── lib/
-│   ├── analyzer/       # Gemini + local fallback analyzer
-│   ├── config.ts       # env-based feature flags
-│   ├── store.ts        # Supabase + localStorage data store
-│   ├── supabase.ts     # client
-│   └── export.ts       # PDF / Markdown / JSON report generation
-├── pages/              # LandingPage, AuthPage, DashboardPage
-└── types/              # shared domain types
+│   ├── analyzer/       # Gemini AI integration + local fallback analyzer
+│   ├── config.ts       # Environment-based feature flags
+│   ├── store.ts        # Supabase and localStorage data persistence
+│   ├── supabase.ts     # Supabase client initialization
+│   └── export.ts       # PDF / Markdown / JSON report generation logic
+├── pages/              # Core pages: LandingPage, AuthPage, DashboardPage
+└── types/              # Shared TypeScript domain types
 ```
 
-## 🎬 Demo story
+## 9. Local Setup
+```bash
+# Install dependencies
+npm install
 
-1. Open the landing page → click **Get Started**.
-2. Sign up (any email/password — local mode needs no confirmation).
-3. On the dashboard click **Load Demo Project** → pick e.g. *Banking App*.
-4. Click **Run Analysis** → findings populate the Review Queue + summary cards.
-5. Inspect findings, mark some as **Accept / Ignore / Resolve**.
-6. Click **Export → PDF/Markdown/JSON**.
+# Start the development server
+npm run dev
+# The app will be running at http://localhost:5173
+```
+*Note: The app runs out of the box using a local (browser) backend and a built-in deterministic analyzer, so every flow works for a demo without needing immediate API keys.*
 
-## 📄 Docs
+## 10. Environment Variables
+To enable cloud persistence and real AI analysis, copy `.env.example` to `.env` and provide your keys. 
 
-The `docs/` folder is the single source of truth: `prd.md` (product scope) and
-the Stitch design assets (visual style, layout, components).
+```env
+VITE_SUPABASE_URL=your_supabase_url
+VITE_SUPABASE_ANON_KEY=your_supabase_anon_key
+VITE_GEMINI_API_KEY=your_gemini_api_key
+```
+*(Ensure you do not expose or commit your actual secrets to version control).*
 
----
+## 11. License
+MIT License
 
-© 2026 SpecGuard AI. Built for engineers.
+Copyright (c) 2026 SpecGuard AI
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
